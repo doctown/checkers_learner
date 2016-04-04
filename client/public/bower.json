@@ -1,0 +1,23 @@
+{
+  "name": "checkers_learner",
+  "homepage": "https://github.com/doctown/checkers_learner",
+  "authors": [
+    "David Ogor <doctown@yahoo.com>"
+  ],
+  "description": "A checkers board game",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.2",
+    "underscore": "^1.8.3",
+    "backbone": "^1.3.2"
+  }
+}
