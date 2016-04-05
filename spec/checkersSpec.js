@@ -1,5 +1,10 @@
 describe('checkers', function() {
-  it('should have an object named `app`', function() {
+  var game;
+  before(function() {
+    game = new Game();
+  });
+
+  it('should have an object named `game`', function() {
     expect(game).to.be.an('object');
   });
 
@@ -13,7 +18,7 @@ describe('checkers', function() {
   describe('model', function() {
 
     before(function() {
-      app;
+
     });
 
     beforeEach(function() {
@@ -42,7 +47,7 @@ describe('checkers', function() {
   describe('behavior', function() {
 
     before(function() {
-      app.init();
+
     });
 
     beforeEach(function() {
@@ -63,7 +68,7 @@ describe('checkers', function() {
   describe('view', function() {
 
     before(function() {
-      app.init();
+
     });
 
     beforeEach(function() {
