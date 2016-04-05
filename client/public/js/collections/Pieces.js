@@ -1,7 +1,7 @@
 /**
  * Collection of black checker pieces
  */
-var BlackPieces = Backbone.Collection.extend({
+var Pieces = Backbone.Collection.extend({
   initialize: function() {
     // Add listeners for when any item in the collection
     // is clicked
