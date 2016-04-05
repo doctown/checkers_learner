@@ -15,18 +15,23 @@ var PieceView = Backbone.View.extend({
     });
   },
   events: {
-    click: handleClick
+    click: this.handleClick
   },
   handleClick: function() {
     // handle a click from the player
     // trigger a click regardless of the type
+    console.log('You clicked ', this);
     this.model.trigger('click');
   },
   render: function() {
     // create a image of the piece based on the type and the color
-    $html = null;
-    if (this.model.get('type') === 'tile') {
-      $html = this.$el.html('<img src="images/gray.gif" alt="dark player token"/>');
+    var $html = this.$el;
+    if (this.model.get('type') === 'tile_light') {
+      this.$el.attr('src', 'images/gray.gif');
+      this.$el.attr('alt', 'dark player token');
+    } else if (this.model.get('type') === 'tile_dark') {
+      this.$el.attr('src', 'images/black.gif');
+      this.$el.attr('alt', 'dark player token');
     } else if (this.model.get('color') === 'red') {
       $html = this.$el.html('<img src="images/redPiece.gif" alt="dark player token"/>');
     } else {

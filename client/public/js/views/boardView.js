@@ -1,7 +1,7 @@
 /**
  * Creates the view for the checker board
  */
-var lineView = Backbone.View.extend({
+var BoardView = Backbone.View.extend({
   tagName: 'div',
   className: 'board',
   initialize: function() {
@@ -9,12 +9,13 @@ var lineView = Backbone.View.extend({
   },
   render: function() {
     // create the line views
+    // render all the lines
     this.$el.children().detach();
-
-    this.$el.html('<div></div>').append(
-      this.model.get('board').get('rows').map(function(tile) {
-        return new pieceView({model: tile}).render();
+    this.$el.html('').append(
+      this.model.get('board').get('rows').map(function(line) {
+        return new LineView({collection: line}).render();
       })
     );
+    return this.$el;
   }
 });
