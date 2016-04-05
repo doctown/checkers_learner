@@ -1,6 +1,6 @@
 describe('checkers', function() {
   it('should have an object named `app`', function() {
-    expect(app).to.be.an('object');
+    expect(game).to.be.an('object');
   });
 
   describe('init', function() {
@@ -13,7 +13,7 @@ describe('checkers', function() {
   describe('model', function() {
 
     before(function() {
-      app.init();
+      app;
     });
 
     beforeEach(function() {

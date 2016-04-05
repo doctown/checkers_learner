@@ -2,7 +2,11 @@
  * A game of checkers
  */
 var Game = Backbone.Model.extend({
-  initialize: {
+  initialize: function() {
+    // call startGame
+    this.startGame();
+  },
+  defaults: {
     score: 0,
     board: null,
     status: 'Not Started',
@@ -12,7 +16,7 @@ var Game = Backbone.Model.extend({
   },
   startGame: function() {
     // Create the board
-
+    this.set('board', new Board());
   },
   endGame: function() {
     // Remove the board
