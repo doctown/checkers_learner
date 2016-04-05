@@ -1,0 +1,10 @@
+img {
+    width: 64px;
+    height: 64px;
+}
+
+.line {
+    line-height: 0;
+    height: 64px;
+    overflow: hidden;
+}

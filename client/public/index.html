@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Checkers</title>
+    <title>Checkers Learner</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/backbone/backbone-min.js"></script>
 </head>
 <body>
+
+<!-- Source files -->
+<script src="js/models/piece.js"></script>
+<script src="js/collections/redPieces.js"></script>
+<script src="js/collections/blackPieces.js"></script>
+<script src="js/collections/pieces.js"></script>
+<script src="js/models/board.js"></script>
+<script src="js/models/game.js"></script>
+<script src="js/views/pieceView.js"></script>
+<script src="js/views/lineView.js"></script>
+<script src="js/views/boardView.js"></script>
+
+<script type="text/javascript">
+    <!-- Create the game model -->
+    var game = new Game();
+    <!-- Create the board view and attach the game model -->
+    var boardView = new BoardView({model: game});
+
+    // put the view onto the screen
+    $('body').append(boardView.render());
+</script>
 
 </body>
 </html>
