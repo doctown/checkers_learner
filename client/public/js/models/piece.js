@@ -12,6 +12,9 @@ var Piece = Backbone.Model.extend({
     type: 'single'
   },
   clicked: function() {
+    this.trigger('clicked', this)
+  },
+  toggle: function() {
     var mycolor = this.get('color');
     if (mycolor === 'red') {
       this.set('color', 'red-selected');
@@ -22,8 +25,6 @@ var Piece = Backbone.Model.extend({
     } else if (mycolor === 'red-selected') {
       this.set('color', 'red');
     }
-
     this.trigger('change', this);
-    this.trigger('clicked', this)
   }
 });
