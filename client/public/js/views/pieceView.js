@@ -20,9 +20,7 @@ var PieceView = Backbone.View.extend({
   handleClick: function() {
     // handle a click from the player
     // trigger a click regardless of the type
-    if (this.model.get('type') === 'single') {
-      this.model.clicked();
-    }
+    this.model.clicked();
   },
   render: function() {
     // create a image of the piece based on the type and the color

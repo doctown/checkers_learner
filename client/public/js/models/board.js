@@ -3,10 +3,12 @@
  */
 var Board = Backbone.Model.extend({
   initialize: function() {
+    var model = this;
     // this.setupBoard();
     /*
      * Create all the pieces on the board
      */
+    // Create a collection of pieces based on initial location on the board
     // Create a collection of pieces
     var tilePicker = 0;
     //var redPiecesCounter = 0;
@@ -30,6 +32,9 @@ var Board = Backbone.Model.extend({
 
       // add a collection to each row
       this.get('rows').push(row);
+      row.on('clicked', function(piece) {
+        model.trigger('clicked', piece);
+      })
     }
   },
   defaults: {
