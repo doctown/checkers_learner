@@ -33,9 +33,11 @@ var PieceView = Backbone.View.extend({
       this.$el.attr('src', 'images/black.gif');
       this.$el.attr('alt', 'dark player token');
     } else if (this.model.get('color') === 'red') {
-      $html = this.$el.html('<img src="images/redPiece.gif" alt="dark player token"/>');
+      this.$el.attr('src', 'images/redPiece.gif');
+      this.$el.attr('alt', 'dark player token');
     } else {
-      $html = this.$el.html('<img src="images/blackPiece.gif" alt="dark player token"/>');
+      this.$el.attr('src', 'images/blackPiece.gif');
+      this.$el.attr('alt', 'dark player token');
     }
     return $html;
   }

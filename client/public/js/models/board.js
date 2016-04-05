@@ -9,23 +9,25 @@ var Board = Backbone.Model.extend({
      */
     // Create a collection of pieces
     var tilePicker = 0;
-    var redPiecesCounter = 0;
-    var blackPiecesCounter = 0;
+    //var redPiecesCounter = 0;
+    //var blackPiecesCounter = 0;
     for (var line = 0; line < this.get('boardDimension'); line++) {
       var row = new Pieces();
-      if (line % 2 === 0) {
-        tilePicker = 0;
-      } else {
-        tilePicker = 1;
-      }
+      tilePicker = (line % 2 === 0) ? 0 : 1;
+
       for (var i = 0; i < this.get('boardDimension'); i++) {
-        if (tilePicker % 2 === 0) {
-          row.add(new Piece({type: 'tile_light'}));
+        if (line < 2 && tilePicker % 2 === 0) {
+          row.add(new Piece({color: 'red'}));
+        } else if ((line >= this.get('boardDimension') - 2) && tilePicker % 2 == 0) {
+          row.add(new Piece({color: 'black'}));
+        } else if (tilePicker % 2 === 0) {
+            row.add(new Piece({type: 'tile_light'}));
         } else {
           row.add(new Piece({type: 'tile_dark'}));
         }
         tilePicker++;
       }
+
       // add a collection to each row
       this.get('rows').push(row);
     }
