@@ -18,9 +18,9 @@ var Board = Backbone.Model.extend({
       tilePicker = (line % 2 === 0) ? 0 : 1;
 
       for (var i = 0; i < this.get('boardDimension'); i++) {
-        if (line < 2 && tilePicker % 2 === 0) {
+        if (line < 3 && tilePicker % 2 === 0) {
           row.add(new Piece({color: 'red', curPos: {row: line, col: i}}));
-        } else if ((line >= this.get('boardDimension') - 2) && tilePicker % 2 == 0) {
+        } else if ((line >= this.get('boardDimension') - 3) && tilePicker % 2 == 0) {
           row.add(new Piece({color: 'black', curPos: {row: line, col: i}}));
         } else if (tilePicker % 2 === 0) {
             row.add(new Piece({type: 'tile_light', curPos: {row: line, col: i}}));
