@@ -44,7 +44,7 @@ var Game = Backbone.Model.extend({
     // if this piece is the same on your turn
     // and the move is valid move
   },
-  handleClick: function(piece, parent) {
+  handleClick: function(piece) {
     // the piece click is my turn
     var currentPiece = this.get('currentPiece');
     if (this.get('turn') === piece.get('color')) {
@@ -56,6 +56,7 @@ var Game = Backbone.Model.extend({
         this.set('currentPiece', null);
       }
     } else if (piece.get('type') === 'tile_light' && currentPiece !== null) { // if an empty tile is selected, move the current piece
+      this.get('board').move(currentPiece, piece);
       piece.set('type', currentPiece.get('type'));
       piece.set('color', currentPiece.get('color'));
       currentPiece.set('type', 'tile_light');
@@ -64,7 +65,6 @@ var Game = Backbone.Model.extend({
       piece.trigger('change', piece);
       piece.toggle();
       this.set('currentPiece', null);
-
       // call end turn
       this.endTurn();
     }

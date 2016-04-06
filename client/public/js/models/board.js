@@ -19,13 +19,13 @@ var Board = Backbone.Model.extend({
 
       for (var i = 0; i < this.get('boardDimension'); i++) {
         if (line < 2 && tilePicker % 2 === 0) {
-          row.add(new Piece({color: 'red'}));
+          row.add(new Piece({color: 'red', curPos: {row: line, col: i}}));
         } else if ((line >= this.get('boardDimension') - 2) && tilePicker % 2 == 0) {
-          row.add(new Piece({color: 'black'}));
+          row.add(new Piece({color: 'black', curPos: {row: line, col: i}}));
         } else if (tilePicker % 2 === 0) {
-            row.add(new Piece({type: 'tile_light'}));
+            row.add(new Piece({type: 'tile_light', curPos: {row: line, col: i}}));
         } else {
-          row.add(new Piece({type: 'tile_dark'}));
+          row.add(new Piece({type: 'tile_dark', curPos: {row: line, col: i}}));
         }
         tilePicker++;
       }
@@ -43,14 +43,27 @@ var Board = Backbone.Model.extend({
     blackPieces: new BlackPieces({model: Piece}),
     rows: []
   },
-  move: function(newPosition) {
+  move: function(currentPosition, newPosition) {
+    var color = currentPosition.get('color');
     // check to see if move is valid
     // if valid move piece to new location
-    if (this.isValidPosition(newPosition)) {
-      this.set(this.get('cur_pos'), newPosition);
+    var xPos = currentPosition.get('curPos').row + newPosition.get('curPos').row;
+    var yPos = currentPosition.get('curPos').col + newPosition.get('curPos').col;
+    if (xPos % 2 === 0 && yPos % 2 === 0) {
+      xPos /= 2;
+      yPos /= 2;
+      var conflictPiece = this.get('rows')[xPos].at(yPos);
+      if (color === 'red-selected' && conflictPiece.get('color') === 'black'
+        || color === 'black-selected' && conflictPiece.get('color') === 'red') {
+        conflictPiece.set('type', 'tile_light');
+        conflictPiece.set('color', null);
+        conflictPiece.trigger('change', conflictPiece);
+        return 1;
+      }
     } else {
-      return 'Invalid position';
+      return 0;
     }
+
   },
   isValid: function() {
 
