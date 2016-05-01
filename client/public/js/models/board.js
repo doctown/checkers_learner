@@ -11,8 +11,6 @@ var Board = Backbone.Model.extend({
     // Create a collection of pieces based on initial location on the board
     // Create a collection of pieces
     var tilePicker = 0;
-    //var redPiecesCounter = 0;
-    //var blackPiecesCounter = 0;
     for (var line = 0; line < this.get('boardDimension'); line++) {
       var row = new Pieces();
       tilePicker = (line % 2 === 0) ? 0 : 1;
@@ -65,15 +63,49 @@ var Board = Backbone.Model.extend({
     }
 
   },
-  isValid: function() {
+  isValid: function(pieceType, currentPosition, newPosition, color) {
+    // TODO: check to see if a move is valid
+    // TODO: Add test case for valid
+    var valid = false;
+    // if single
+    if (pieceType === 'single') {
+      var opponentColor = (color === 'red') ? 'black' : 'red';
+      // can only move one space to the right or left
+      var rowDifference = newPosition.get('curPos').row - currentPosition.get('curPos').row;
+      var colDifference = Math.abs(newPosition.get('curPos').col - currentPosition.get('curPos').col);
+      // if attempting to jump, check that tile is an enemy tile
+      if (rowDifference === 1 && colDifference === 1) {
+        valid = true;
+      } else if (rowDifference === 2 && colDifference === 2) { // if an enemy, can only move to space if empty
+        var xPos = currentPosition.get('curPos').row + newPosition.get('curPos').row;
+        var yPos = currentPosition.get('curPos').col + newPosition.get('curPos').col;
+        xPos /= 2;
+        yPos /= 2;
+        var conflictPiece = this.get('rows')[xPos].at(yPos);
+        if (conflictPiece.get('color') === opponentColor) {
+          valid = true;
+        }
+      }
+    } else if (pieceType === 'double') {
 
+    } else { // invalid type
+      // TODO: Handle non type
+    }
+    return valid;
   },
   getMoves: function() {
+    // TODO: provide the possible moves from this postion
     // check to see what moves are available
 
     // return an array of valid moves
   },
   getRow: function(rowIndex) { // returns the row in the board based on the index
     return this.get('rows')[rowIndex];
+  },
+  /*
+   * Reset the board by placing the original pieces in the right location.
+   */
+  reset: function() {
+
   }
 });
