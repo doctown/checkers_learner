@@ -4,14 +4,15 @@
 iisnode.yml
 npm-debug.log
 
-db/shortly.sqlite
 node_modules
 public/dist
+bower_components
+
+# images
+client/public/images
 
 # Icon must ends with two \r.
 Icon
-
-
 
 
 # Floobits
