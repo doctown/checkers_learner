@@ -34,6 +34,12 @@ describe('checkers', function() {
     });
 
     describe('board', function() {
+      it('should setup a board with pieces in the correct location', function() {
+
+      });
+
+      it('should create ')
+
       it('should happen when clicked', function() {
       });
     });

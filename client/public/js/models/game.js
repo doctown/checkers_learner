@@ -4,7 +4,6 @@
 var Game = Backbone.Model.extend({
 
   initialize: function() {
-    // call startGame
     this.startGame();
   },
   defaults: {
@@ -23,22 +22,20 @@ var Game = Backbone.Model.extend({
     this.get('board').on('clicked', this.handleClick, model);
   },
   endGame: function() {
-    // Remove the board
-    // Reset the score
+    // TODO: Remove the board
+    this.board.reset();
+    // TODO: Reset the score, should high score be recorded or wins
+    this.score = 0;
   },
   endTurn: function() {
-    // if turn is black
     if (this.get('turn') === 'red') {
-      // make it red
       this.set('turn', 'black');
     } else {
-      // else
       this.set('turn', 'red');
-      // make it black
     }
   },
   capturedPieces: function() {
-    // return the number of captured pieces
+    // TODO: return the number of captured pieces
   },
   move: function() {
     // if this piece is the same on your turn
@@ -46,6 +43,7 @@ var Game = Backbone.Model.extend({
   },
   handleClick: function(piece) {
     // the piece click is my turn
+    // TODO: Migrate the move logic to the board
     var currentPiece = this.get('currentPiece');
     if (this.get('turn') === piece.get('color')) {
       if (currentPiece === null) { // if no current piece selected select this on
